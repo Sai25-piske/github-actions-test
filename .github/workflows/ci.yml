@@ -85,14 +85,18 @@ jobs:
 
       - name: Load and run Docker image on EC2
         uses: appleboy/ssh-action@v1.2.0
+        env:
+          APP_DIR: ${{ secrets.EC2_APP_DIR }}
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+          envs: APP_DIR
           script_stop: true
           script: |
             set -eu
-            APP_DIR="/home/ubuntu/github-actions-test"
+            APP_DIR="${APP_DIR:?EC2_APP_DIR is not configured}"
+
             if [ "$(id -u)" -eq 0 ]; then
               DOCKER="docker"
             else
@@ -101,14 +105,29 @@ jobs:
 
             echo "Deploying from $APP_DIR"
 
+            echo "Checking Docker access"
+            $DOCKER version >/dev/null
+
+            echo "Checking Docker image artifact"
+            test -f /tmp/flask-calci-image.tar
+
+            echo "Loading Docker image"
             $DOCKER load --input /tmp/flask-calci-image.tar
 
+            echo "Removing temporary Docker image artifact"
             rm -f /tmp/flask-calci-image.tar
 
+            echo "Pulling latest application code"
             git -C "$APP_DIR" pull --ff-only origin main
 
+            echo "Checking Compose file"
+            test -f "$APP_DIR/compose.yaml"
+
+            echo "Validating Docker Compose configuration"
             $DOCKER compose -f "$APP_DIR/compose.yaml" config --quiet
 
+            echo "Starting application container"
             $DOCKER compose -f "$APP_DIR/compose.yaml" up -d --no-build --remove-orphans
 
+            echo "Showing application container status"
             $DOCKER compose -f "$APP_DIR/compose.yaml" ps
