@@ -1,0 +1,157 @@
+* {
+	*     margin: 0;
+	*         padding: 0;
+	*             box-sizing: border-box;
+	*             }
+	*
+	*             body {
+		*                 font-family: Arial, sans-serif;
+		*                     min-height: 100vh;
+		*
+			*                         display: flex;
+		*                             justify-content: center;
+		*                                 align-items: center;
+		*
+			*                                     background: linear-gradient(135deg, #141e30, #243b55);
+		*                                     }
+		*
+		*                                     .container {
+			*                                         width: 100%;
+			*                                             display: flex;
+			*                                                 justify-content: center;
+			*                                                     padding: 20px;
+			*                                                     }
+			*
+			*                                                     .calculator {
+				*                                                         width: 360px;
+				*                                                             padding: 25px;
+				*
+					*                                                                 border-radius: 25px;
+				*
+					*                                                                     background: rgba(255, 255, 255, 0.12);
+				*
+					*                                                                         backdrop-filter: blur(15px);
+				*
+					*                                                                             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+				*                                                                             }
+				*
+				*                                                                             .header {
+					*                                                                                 text-align: center;
+					*                                                                                     color: white;
+					*                                                                                         margin-bottom: 20px;
+					*                                                                                         }
+					*
+					*                                                                                         .header h1 {
+						*                                                                                             font-size: 26px;
+						*                                                                                                 margin-bottom: 5px;
+						*                                                                                                 }
+						*
+						*                                                                                                 .header p {
+							*                                                                                                     font-size: 14px;
+							*                                                                                                         opacity: 0.7;
+							*                                                                                                         }
+							*
+							*                                                                                                         .display {
+								*                                                                                                             margin-bottom: 20px;
+								*                                                                                                             }
+								*
+								*                                                                                                             .display input {
+									*                                                                                                                 width: 100%;
+									*                                                                                                                     height: 80px;
+									*
+										*                                                                                                                         border: none;
+									*                                                                                                                             border-radius: 15px;
+									*
+										*                                                                                                                                 background: rgba(0, 0, 0, 0.35);
+									*
+										*                                                                                                                                     color: white;
+									*
+										*                                                                                                                                         font-size: 35px;
+									*
+										*                                                                                                                                             text-align: right;
+									*
+										*                                                                                                                                                 padding: 15px;
+									*
+										*                                                                                                                                                     outline: none;
+									*                                                                                                                                                     }
+									*
+									*                                                                                                                                                     .buttons {
+										*                                                                                                                                                         display: grid;
+										*
+											*                                                                                                                                                             grid-template-columns: repeat(4, 1fr);
+										*
+											*                                                                                                                                                                 gap: 12px;
+										*                                                                                                                                                                 }
+										*
+										*                                                                                                                                                                 button {
+											*                                                                                                                                                                     height: 60px;
+											*
+												*                                                                                                                                                                         border: none;
+											*
+												*                                                                                                                                                                             border-radius: 15px;
+											*
+												*                                                                                                                                                                                 font-size: 20px;
+											*
+												*                                                                                                                                                                                     font-weight: bold;
+											*
+												*                                                                                                                                                                                         cursor: pointer;
+											*
+												*                                                                                                                                                                                             background: rgba(255, 255, 255, 0.15);
+											*
+												*                                                                                                                                                                                                 color: white;
+											*
+												*                                                                                                                                                                                                     transition: 0.2s;
+											*                                                                                                                                                                                                     }
+											*
+											*                                                                                                                                                                                                     button:hover {
+												*                                                                                                                                                                                                         transform: scale(1.05);
+												*
+													*                                                                                                                                                                                                             background: rgba(255, 255, 255, 0.25);
+												*                                                                                                                                                                                                             }
+												*
+												*                                                                                                                                                                                                             button:active {
+													*                                                                                                                                                                                                                 transform: scale(0.95);
+													*                                                                                                                                                                                                                 }
+													*
+													*                                                                                                                                                                                                                 .operator {
+														*                                                                                                                                                                                                                     background: rgba(255, 140, 0, 0.8);
+														*                                                                                                                                                                                                                     }
+														*
+														*                                                                                                                                                                                                                     .operator:hover {
+															*                                                                                                                                                                                                                         background: rgba(255, 160, 30, 1);
+															*                                                                                                                                                                                                                         }
+															*
+															*                                                                                                                                                                                                                         .special {
+																*                                                                                                                                                                                                                             background: rgba(220, 50, 50, 0.8);
+																*                                                                                                                                                                                                                             }
+																*
+																*                                                                                                                                                                                                                             .equals {
+																	*                                                                                                                                                                                                                                 background: rgba(30, 180, 100, 0.9);
+																	*
+																		*                                                                                                                                                                                                                                     grid-column: span 2;
+																	*                                                                                                                                                                                                                                     }
+																	*
+																	*                                                                                                                                                                                                                                     .zero {
+																		*                                                                                                                                                                                                                                         grid-column: span 2;
+																		*                                                                                                                                                                                                                                         }
+																		*
+																		*                                                                                                                                                                                                                                         .footer {
+																			*                                                                                                                                                                                                                                             text-align: center;
+																			*
+																				*                                                                                                                                                                                                                                                 color: white;
+																			*
+																				*                                                                                                                                                                                                                                                     margin-top: 20px;
+																			*
+																				*                                                                                                                                                                                                                                                         font-size: 12px;
+																			*
+																				*                                                                                                                                                                                                                                                             opacity: 0.6;
+																			*                                                                                                                                                                                                                                                             }
+																			*
+																			*                                                                                                                                                                                                                                                             @media (max-width: 450px) {
+																				*
+																					*                                                                                                                                                                                                                                                                 .calculator {
+																						*                                                                                                                                                                                                                                                                         width: 100%;
+																						*                                                                                                                                                                                                                                                                                 max-width: 360px;
+																						*                                                                                                                                                                                                                                                                                     }
+																				*
+																					*                                                                                                                                                                                                                                                                                     }
