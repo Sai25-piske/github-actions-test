@@ -1,13 +1,13 @@
 :root {
-    --ink: #eaf4ff;
-    --muted: #9ab2c9;
-    --panel: rgba(10, 25, 45, 0.9);
-    --panel-edge: rgba(119, 198, 255, 0.25);
-    --button: rgba(255, 255, 255, 0.08);
-    --blue: #2189ed;
-    --blue-bright: #48b4ff;
-    --cyan: #67e8f9;
-    --yellow: #f8d56b;
+    --ink: #fff1f8;
+    --muted: #c9a7b8;
+    --panel: rgba(20, 10, 17, 0.94);
+    --panel-edge: rgba(255, 79, 157, 0.34);
+    --button: rgba(255, 255, 255, 0.07);
+    --pink: #f02d83;
+    --pink-bright: #ff69ad;
+    --pink-soft: #ffb6d5;
+    --yellow: #ffd166;
 }
 
 * {
@@ -26,9 +26,9 @@ body {
 
     color: var(--ink);
     background:
-        radial-gradient(circle at 15% 15%, rgba(33, 137, 237, 0.24), transparent 32%),
-        radial-gradient(circle at 85% 85%, rgba(103, 232, 249, 0.14), transparent 30%),
-        linear-gradient(135deg, #071321 0%, #0b1d32 55%, #102a3c 100%);
+        radial-gradient(circle at 15% 15%, rgba(240, 45, 131, 0.24), transparent 32%),
+        radial-gradient(circle at 85% 85%, rgba(255, 105, 173, 0.14), transparent 30%),
+        linear-gradient(135deg, #090709 0%, #180c14 55%, #24101c 100%);
 }
 
 .container {
@@ -51,7 +51,7 @@ body {
 
     backdrop-filter: blur(18px);
 
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5), 0 0 40px rgba(33, 137, 237, 0.12);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.58), 0 0 40px rgba(240, 45, 131, 0.14);
 }
 
 .header {
@@ -74,11 +74,11 @@ body {
     display: grid;
     place-items: center;
     margin: 0 auto 12px;
-    border: 1px solid rgba(103, 232, 249, 0.55);
+    border: 1px solid rgba(255, 182, 213, 0.55);
     border-radius: 12px;
-    color: #04111f;
-    background: linear-gradient(135deg, var(--cyan), var(--blue-bright));
-    box-shadow: 0 8px 22px rgba(33, 137, 237, 0.3);
+    color: #180812;
+    background: linear-gradient(135deg, var(--pink-soft), var(--pink-bright));
+    box-shadow: 0 8px 22px rgba(240, 45, 131, 0.3);
     font-size: 22px;
     font-weight: bold;
 }
@@ -115,12 +115,12 @@ body {
     height: 80px;
 
     border: none;
-    border: 1px solid rgba(103, 232, 249, 0.14);
+    border: 1px solid rgba(255, 182, 213, 0.18);
     border-radius: 14px;
 
-    background: rgba(2, 10, 20, 0.72);
+    background: rgba(3, 2, 3, 0.78);
 
-    color: var(--cyan);
+    color: var(--pink-soft);
     box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.25);
 
     font-size: 35px;
@@ -162,9 +162,9 @@ button {
 button:hover {
     transform: scale(1.05);
 
-    border-color: rgba(103, 232, 249, 0.35);
-    background: rgba(103, 232, 249, 0.16);
-    box-shadow: 0 6px 16px rgba(103, 232, 249, 0.12);
+    border-color: rgba(255, 105, 173, 0.45);
+    background: rgba(240, 45, 131, 0.18);
+    box-shadow: 0 6px 16px rgba(240, 45, 131, 0.16);
 }
 
 button:active {
@@ -172,15 +172,15 @@ button:active {
 }
 
 .operator {
-    background: rgba(33, 137, 237, 0.82);
+    background: rgba(240, 45, 131, 0.84);
 }
 
 .operator:hover {
-    background: var(--blue-bright);
+    background: var(--pink-bright);
 }
 
 .special {
-    background: rgba(22, 75, 130, 0.9);
+    background: rgba(105, 25, 65, 0.92);
 }
 
 .equals {
