@@ -77,10 +77,15 @@ jobs:
           script_stop: true
           script: |
             set -eu
+            if [ "$(id -u)" -eq 0 ]; then
+              SUDO=""
+            else
+              SUDO="sudo -n"
+            fi
             configured_dir="${APP_DIR:-}"
             APP_DIR=""
             for candidate in "$configured_dir" "$HOME/github-actions-test" "/root/github-actions-test" "/home/ubuntu/github-actions-test"; do
-              if [ -n "$candidate" ] && [ -d "$candidate" ]; then
+              if [ -n "$candidate" ] && $SUDO test -d "$candidate"; then
                 APP_DIR="$candidate"
                 break
               fi
@@ -90,10 +95,9 @@ jobs:
               exit 1
             fi
             echo "Deploying from $APP_DIR"
-            docker load --input /tmp/flask-calci-image.tar
-            rm -f /tmp/flask-calci-image.tar
-            cd "$APP_DIR"
-            git pull --ff-only origin main
-            docker compose config --quiet
-            docker compose up -d --no-build --remove-orphans
-            docker compose ps
+            $SUDO docker load --input /tmp/flask-calci-image.tar
+            $SUDO rm -f /tmp/flask-calci-image.tar
+            $SUDO git -C "$APP_DIR" pull --ff-only origin main
+            $SUDO docker compose -f "$APP_DIR/compose.yaml" config --quiet
+            $SUDO docker compose -f "$APP_DIR/compose.yaml" up -d --no-build --remove-orphans
+            $SUDO docker compose -f "$APP_DIR/compose.yaml" ps
