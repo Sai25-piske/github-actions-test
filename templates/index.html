@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Piske-Panikar_calculator | Student Edition</title>
+    <title>Circle Wine Shop | Calculator</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
@@ -19,15 +19,35 @@
 
             <div class="header">
                 <div class="brand-row">
-                    <div class="brand-mark">P</div>
-                    <span class="student-badge">FOR STUDENTS</span>
+                    <div class="brand-mark">C</div>
+                    <span class="student-badge">CIRCLE WINE SHOP</span>
                 </div>
-                <h1>Piske-Panikar_calculator</h1>
-                <p>Learn it. Solve it. Own it.</p>
+                <h1>Circle Wine Shop</h1>
+                <p>Pour the right pick for your number.</p>
             </div>
 
             <div class="display">
                 <input type="text" id="display" value="0" readonly>
+            </div>
+
+            <div class="drink-recommendation" id="drinkRecommendation" aria-live="polite">
+                <div class="recommendation-copy">
+                    <span class="recommendation-label">YOUR POUR</span>
+                    <strong id="drinkName">Beer</strong>
+                    <span id="drinkMessage">Numbers below 500 get a beer.</span>
+                </div>
+                <div class="drink-image beer-image" id="drinkImage" aria-hidden="true">🍺</div>
+            </div>
+
+            <div class="drink-buttons" aria-label="Drink selections">
+                <button type="button" class="drink-button beer-button" onclick="showDrink('beer')">
+                    <span class="drink-icon" aria-hidden="true">🍺</span>
+                    <span>Beer</span>
+                </button>
+                <button type="button" class="drink-button whiskey-button" onclick="showDrink('whiskey')">
+                    <span class="drink-icon" aria-hidden="true">🥃</span>
+                    <span>Whiskey</span>
+                </button>
             </div>
 
             <div class="buttons">
@@ -59,7 +79,7 @@
             </div>
 
             <div class="footer">
-                <p>Student Edition <span aria-hidden="true">•</span> Powered by Flask</p>
+                <p>Aurora Theatre <span aria-hidden="true">•</span> Powered by Flask</p>
             </div>
 
         </div>

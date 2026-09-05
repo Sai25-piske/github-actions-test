@@ -132,6 +132,97 @@ body {
     outline: none;
 }
 
+.drink-recommendation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 82px;
+    margin-bottom: 12px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 182, 213, 0.2);
+    border-radius: 14px;
+    background: rgba(240, 45, 131, 0.1);
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.whiskey-recommendation {
+    border-color: rgba(255, 209, 102, 0.35);
+    background: rgba(255, 209, 102, 0.1);
+}
+
+.recommendation-copy {
+    display: grid;
+    gap: 3px;
+}
+
+.recommendation-label {
+    color: var(--pink-soft);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+.recommendation-copy strong {
+    font-size: 21px;
+}
+
+.recommendation-copy span:last-child {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.drink-image,
+.drink-icon {
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
+}
+
+.drink-image {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 182, 213, 0.14);
+    font-size: 30px;
+}
+
+.whiskey-image {
+    background: rgba(255, 209, 102, 0.16);
+}
+
+.drink-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.drink-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 46px;
+    font-size: 14px;
+}
+
+.drink-icon {
+    font-size: 20px;
+}
+
+.beer-button {
+    background: rgba(240, 45, 131, 0.24);
+}
+
+.whiskey-button {
+    color: #1c1205;
+    background: var(--yellow);
+}
+
+.whiskey-button:hover {
+    background: #ffe19a;
+}
+
 .buttons {
     display: grid;
 
