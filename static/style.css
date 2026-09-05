@@ -1,12 +1,13 @@
 :root {
     --ink: #eaf4ff;
     --muted: #9ab2c9;
-    --panel: rgba(10, 25, 45, 0.84);
-    --panel-edge: rgba(119, 198, 255, 0.2);
+    --panel: rgba(10, 25, 45, 0.9);
+    --panel-edge: rgba(119, 198, 255, 0.25);
     --button: rgba(255, 255, 255, 0.08);
     --blue: #2189ed;
     --blue-bright: #48b4ff;
     --cyan: #67e8f9;
+    --yellow: #f8d56b;
 }
 
 * {
@@ -27,7 +28,7 @@ body {
     background:
         radial-gradient(circle at 15% 15%, rgba(33, 137, 237, 0.24), transparent 32%),
         radial-gradient(circle at 85% 85%, rgba(103, 232, 249, 0.14), transparent 30%),
-        #071321;
+        linear-gradient(135deg, #071321 0%, #0b1d32 55%, #102a3c 100%);
 }
 
 .container {
@@ -41,7 +42,7 @@ body {
 
 .calculator {
     width: min(100%, 380px);
-    padding: 28px;
+    padding: 30px;
 
     border: 1px solid var(--panel-edge);
     border-radius: 22px;
@@ -50,13 +51,21 @@ body {
 
     backdrop-filter: blur(18px);
 
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(103, 232, 249, 0.04);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5), 0 0 40px rgba(33, 137, 237, 0.12);
 }
 
 .header {
     text-align: center;
 
     margin-bottom: 24px;
+}
+
+.brand-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 14px;
 }
 
 .brand-mark {
@@ -74,10 +83,21 @@ body {
     font-weight: bold;
 }
 
+.student-badge {
+    padding: 6px 9px;
+    border: 1px solid rgba(248, 213, 107, 0.45);
+    border-radius: 999px;
+    color: var(--yellow);
+    background: rgba(248, 213, 107, 0.08);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+}
+
 .header h1 {
     color: var(--ink);
-    font-size: 25px;
-    letter-spacing: 0.5px;
+    font-size: 24px;
+    letter-spacing: 1.2px;
     margin-bottom: 5px;
 }
 
@@ -101,6 +121,7 @@ body {
     background: rgba(2, 10, 20, 0.72);
 
     color: var(--cyan);
+    box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.25);
 
     font-size: 35px;
 
@@ -135,7 +156,7 @@ button {
 
     color: var(--ink);
 
-    transition: transform 0.2s, background 0.2s, border-color 0.2s;
+    transition: transform 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 button:hover {
@@ -143,6 +164,7 @@ button:hover {
 
     border-color: rgba(103, 232, 249, 0.35);
     background: rgba(103, 232, 249, 0.16);
+    box-shadow: 0 6px 16px rgba(103, 232, 249, 0.12);
 }
 
 button:active {
@@ -163,6 +185,7 @@ button:active {
 
 .equals {
     background: rgba(24, 166, 140, 0.9);
+    color: #ecfffb;
 
     grid-column: span 2;
 }
