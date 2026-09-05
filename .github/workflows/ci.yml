@@ -93,17 +93,22 @@ jobs:
           script: |
             set -eu
             APP_DIR="/home/ubuntu/github-actions-test"
+            if [ "$(id -u)" -eq 0 ]; then
+              DOCKER="docker"
+            else
+              DOCKER="sudo -n docker"
+            fi
 
             echo "Deploying from $APP_DIR"
 
-            docker load --input /tmp/flask-calci-image.tar
+            $DOCKER load --input /tmp/flask-calci-image.tar
 
             rm -f /tmp/flask-calci-image.tar
 
             git -C "$APP_DIR" pull --ff-only origin main
 
-            docker compose -f "$APP_DIR/compose.yaml" config --quiet
+            $DOCKER compose -f "$APP_DIR/compose.yaml" config --quiet
 
-            docker compose -f "$APP_DIR/compose.yaml" up -d --no-build --remove-orphans
+            $DOCKER compose -f "$APP_DIR/compose.yaml" up -d --no-build --remove-orphans
 
-            docker compose -f "$APP_DIR/compose.yaml" ps
+            $DOCKER compose -f "$APP_DIR/compose.yaml" ps
