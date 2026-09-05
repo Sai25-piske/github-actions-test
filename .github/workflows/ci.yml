@@ -100,11 +100,7 @@ jobs:
             echo "Starting EC2 deployment"
             echo "Using application directory: $APP_DIR"
 
-            if [ "$(id -u)" -eq 0 ]; then
-              DOCKER="docker"
-            else
-              DOCKER="sudo -n docker"
-            fi
+            DOCKER="docker"
 
             echo "Deploying from $APP_DIR"
 
