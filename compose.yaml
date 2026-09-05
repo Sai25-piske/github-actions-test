@@ -1,5 +1,6 @@
 services:
   flask-calci:
+    image: flask-calci:ci
     build:
       context: .
       dockerfile: Dockerfile

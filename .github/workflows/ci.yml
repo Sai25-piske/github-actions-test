@@ -34,6 +34,16 @@ jobs:
       - name: Build Docker image
         run: docker build --tag flask-calci:ci .
 
+      - name: Export Docker image
+        run: docker save flask-calci:ci --output flask-calci-image.tar
+
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flask-calci-image
+          path: flask-calci-image.tar
+          retention-days: 1
+
   deploy:
     name: Deploy to EC2
     needs: validate
@@ -41,7 +51,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Pull, build, and run on EC2
+      - name: Download Docker image artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: flask-calci-image
+
+      - name: Copy Docker image to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: flask-calci-image.tar
+          target: /tmp
+
+      - name: Load and run Docker image on EC2
         uses: appleboy/ssh-action@v1.2.0
         env:
           APP_DIR: ${{ secrets.EC2_APP_DIR }}
@@ -53,14 +77,23 @@ jobs:
           script_stop: true
           script: |
             set -eu
-            APP_DIR="${APP_DIR:-/root/github-actions-test}"
-            if [ ! -d "$APP_DIR" ]; then
-              echo "EC2 application directory does not exist: $APP_DIR"
+            configured_dir="${APP_DIR:-}"
+            APP_DIR=""
+            for candidate in "$configured_dir" "$HOME/github-actions-test" "/root/github-actions-test" "/home/ubuntu/github-actions-test"; do
+              if [ -n "$candidate" ] && [ -d "$candidate" ]; then
+                APP_DIR="$candidate"
+                break
+              fi
+            done
+            if [ -z "$APP_DIR" ]; then
+              echo "EC2 application directory was not found. Checked the configured path, $HOME/github-actions-test, /root/github-actions-test, and /home/ubuntu/github-actions-test."
               exit 1
             fi
+            echo "Deploying from $APP_DIR"
+            docker load --input /tmp/flask-calci-image.tar
+            rm -f /tmp/flask-calci-image.tar
             cd "$APP_DIR"
             git pull --ff-only origin main
             docker compose config --quiet
-            docker compose build
-            docker compose up -d --remove-orphans
+            docker compose up -d --no-build --remove-orphans
             docker compose ps
