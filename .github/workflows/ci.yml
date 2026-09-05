@@ -92,7 +92,7 @@ jobs:
           script_stop: true
           script: |
             set -eu
-            APP_DIR="/root/github-actions-test"
+            APP_DIR="/home/ubuntu/github-actions-test"
 
             echo "Deploying from $APP_DIR"
 
